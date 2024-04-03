@@ -10,6 +10,8 @@ import re
 def get_demo():
 
     data = []
+    age = []
+    sex = []
     # Read config.json file
     p = open('/flywheel/v0/config.json')
     config = json.loads(p.read())
@@ -91,16 +93,16 @@ def get_demo():
     # Creates DataFrame.  
     demo = pd.DataFrame(data)
 
-    filePath = '/flywheel/v0/output/vol.csv'
-    with open(filePath) as csv_file:
-        vols = pd.read_csv(csv_file, index_col=None, header=0) 
-        vols = vols.drop('subject', axis=1)
+    # filePath = '/flywheel/v0/output/vol.csv'
+    # with open(filePath) as csv_file:
+    #     vols = pd.read_csv(csv_file, index_col=None, header=0) 
+    #     vols = vols.drop('subject', axis=1)
 
-    frames = [demo, vols]
-    df = pd.concat(frames, axis=1)
+    # frames = [demo, vols]
+    # df = pd.concat(frames, axis=1)
 
-    outdir = ('/flywheel/v0/output/hyperfine_synthseg_volume.csv')
-    df.to_csv(outdir)
+    # outdir = ('/flywheel/v0/output/hyperfine_synthseg_volume.csv')
+    # df.to_csv(outdir)
 
     print("Demographics: ", subject_label, session_label, age, PatientSex)
     return subject_label, session_label, age, PatientSex

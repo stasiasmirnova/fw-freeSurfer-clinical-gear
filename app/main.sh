@@ -1,10 +1,9 @@
 #! /bin/bash
 #
-# Run script for flywheel/mri-synthseg Gear.
+# Run script for flywheel/recon-all-clinical Gear.
 #
-# Authorship: Niall bourke
+# Authorship: Anastasia Smirnova
 #
-
 ##############################################################################
 # Define directory names and containers
 
@@ -34,14 +33,9 @@ function parse_config {
 config_output_nifti="$(parse_config 'output_nifti')"
 config_output_mgh="$(parse_config 'output_mgh')"
 # define options:
-config_parc="$(parse_config 'parc')"
-config_vol="$(parse_config 'vol')"
-config_qc="$(parse_config 'QC')"
 config_rob="$(parse_config 'robust')"
 
-echo "Parcelation is ${config_parc}"
-echo "Save volume output is $config_vol"
-echo "Save QC output is $config_qc"
+echo "robust is ${config_rob}"
 ##############################################################################
 # Define brain and face templates
 
@@ -77,41 +71,33 @@ fi
 # Run mri_synthseg algorithm
 
 # Set initial exit status
-mri_synthseg_exit_status=0
+recon_all_clinical_exit_status=0
 
 # Set base output_file name
-output_file=$OUTPUT_DIR/"$base_filename"'_synthseg'
+output_file=$OUTPUT_DIR/"$base_filename"'_recon_all_clinical'
 echo "output_file is $output_file"
 
-# Check if user wanted parcelation output
-if [[ $config_parc == 'true' ]]; then
-  parc='--parc'
-fi
-if [[ $config_vol == 'true' ]]; then
-  vol=`echo --vol $OUTPUT_DIR/vol.csv`
-fi
-if [[ $config_qc == 'true' ]]; then
-  qc=`echo --qc $OUTPUT_DIR/qc.csv`
-fi
+
 if [[ $config_rob == 'true' ]]; then
   robust='--robust'
 fi
 
-# Run synthseg with options
+# Run recon-all-clinical with options
 if [[ -e $input_file ]]; then
-  echo "Running synthseg..."
-  mri_synthseg --i $input_file --o $OUTPUT_DIR $parc $vol $qc $robust
-  mri_synthseg_exit_status=$?
+  echo "Running recon-all-clinical..."
+  recon-all-clinical
+  recon-all-clinical $input_file #INPUT_SCAN SUBJECT_ID THREADS [SUBJECT_DIR]
+  recon_all_clinical_exit_status=$?
 fi
 
 ##############################################################################
 # Handle Exit status
 
-if [[ $mri_synthseg_exit_status == 0 ]]; then
+if [[ $recon_all_clinical_exit_status == 0 ]]; then
   echo -e "${CONTAINER} Success!"
   exit 0
 else
-  echo "${CONTAINER}  Something went wrong! mri_synthseg exited non-zero!"
+  echo "${CONTAINER}  Something went wrong! recon-all-clinical exited non-zero!"
   exit 1
 fi
-# return [mri_synthseg_exit_status]
+return [recon-all-clinical_exit_status]
