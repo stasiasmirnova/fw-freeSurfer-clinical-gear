@@ -26,7 +26,7 @@
     },
     "gear-builder": {
       "category": "analysis",
-      "image": "flywheel/recon-all-clinical:0.1.3"
+      "image": "flywheel/recon-all-clinical:0.1.5"
     },
     "kcl-app-binary": "app/main.sh",
     "kcl-app-modalities": [
@@ -62,7 +62,21 @@
     "container": "oci",
     "_": "/usr/bin/printenv",
     "SHLVL": "1",
-    "PWD": "/flywheel/v0"
+    "PWD": "/flywheel/v0",
+    "OS": "Linux",
+    "SUBJECTS_DIR": "/usr/local/freesurfer/subjects",
+    "MNI_DIR": "/usr/local/freesurfer/mni",
+    "FSFAST_HOME": "/usr/local/freesurfer/fsfast",
+    "FSF_OUTPUT_FORMAT": "nii.gz",
+    "LOCAL_DIR": "/usr/local/freesurfer/local",
+    "FMRI_ANALYSIS_DIR": "/usr/local/freesurfer/fsfast",
+    "FUNCTIONALS_DIR": "/usr/local/freesurfer/sessions",
+    "MNI_PERL5LIB": "/usr/local/freesurfer/mni/share/perl5",
+    "MINC_BIN_DIR": "/usr/local/freesurfer/mni/bin",
+    "PERL5LIB": "/usr/local/freesurfer/mni/share/perl5",
+    "FS_OVERRIDE": "0",
+    "MINC_LIB_DIR": "/usr/local/freesurfer/mni/lib",
+    "MNI_DATAPATH": "/usr/local/freesurfer/mni/data"
   },
   "inputs": {
     "api-key": {
@@ -81,5 +95,5 @@
   "name": "recon-all-clinical",
   "source": "https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all-clinical",
   "url": "https://surfer.nmr.mgh.harvard.edu/",
-  "version": "0.1.3"
+  "version": "0.1.5"
 }

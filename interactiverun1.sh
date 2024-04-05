@@ -1,8 +1,9 @@
 #!/usr/bin/env bash 
 
 GEAR=fw-freeSurfer-clinical-gear
-IMAGE=flywheel/recon-all-clinical:0.1.3
-LOG=recon-all-clinical-0.1.3-660c05843b1c37355b583ce0
+IMAGE=flywheel/recon-all-clinical:0.1.4
+LOG=fw-freeSurfer-clinical-gear/recon-all-clinical-0.1.4-660da31f0aa9007ce3580e91
+
 
 # Command:
 docker run -it --rm --entrypoint bash\
