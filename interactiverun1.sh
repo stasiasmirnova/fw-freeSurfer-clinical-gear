@@ -1,8 +1,8 @@
 #!/usr/bin/env bash 
 
 GEAR=fw-freeSurfer-clinical-gear
-IMAGE=flywheel/recon-all-clinical:0.1.4
-LOG=fw-freeSurfer-clinical-gear/recon-all-clinical-0.1.4-660da31f0aa9007ce3580e91
+IMAGE=flywheel/recon-all-clinical:0.1.7
+LOG=recon-all-clinical-0.1.7-661011be0aa9007ce358120c
 
 
 # Command:

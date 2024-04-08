@@ -11,7 +11,7 @@ FLYWHEEL_BASE=/flywheel/v0
 INPUT_DIR=$FLYWHEEL_BASE/input/
 OUTPUT_DIR=$FLYWHEEL_BASE/output
 CONFIG_FILE=$FLYWHEEL_BASE/config.json
-CONTAINER='[flywheel/mri-synthseg]'
+CONTAINER='[flywheel/recon-all-clinical]'
 
 source /usr/local/freesurfer/SetUpFreeSurfer.sh
 ##############################################################################
@@ -85,8 +85,8 @@ fi
 # Run recon-all-clinical with options
 if [[ -e $input_file ]]; then
   echo "Running recon-all-clinical..."
-  recon-all-clinical
-  recon-all-clinical $input_file #INPUT_SCAN SUBJECT_ID THREADS [SUBJECT_DIR]
+  
+  recon-all -s $output_file $input_file
   recon_all_clinical_exit_status=$?
 fi
 
