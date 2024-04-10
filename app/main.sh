@@ -12,6 +12,7 @@ INPUT_DIR=$FLYWHEEL_BASE/input/
 OUTPUT_DIR=$FLYWHEEL_BASE/output
 CONFIG_FILE=$FLYWHEEL_BASE/config.json
 CONTAINER='[flywheel/recon-all-clinical]'
+threads = 4
 
 source /usr/local/freesurfer/SetUpFreeSurfer.sh
 ##############################################################################
@@ -85,8 +86,9 @@ fi
 # Run recon-all-clinical with options
 if [[ -e $input_file ]]; then
   echo "Running recon-all-clinical..."
-  
-  recon-all -s $output_file $input_file
+  ls -l
+  chmod +x recon_all_clinical.sh 
+  recon_all_clinical.sh $input_file $base_filename $threads $output_file
   recon_all_clinical_exit_status=$?
 fi
 

@@ -23,7 +23,8 @@ RUN yum update -y  && \
     pip3 install flywheel-sdk && \
     pip3 install jsonschema && \
     pip3 install pandas  && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    cp license.txt /usr/local/freesurfer/.license
 
 # setup fs env
 ENV PATH /usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/freesurfer/tktools:/usr/local/freesurfer/mni/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -33,5 +34,5 @@ ENV FREESURFER /usr/local/freesurfer
 # Configure entrypoint
 RUN bash -c 'chmod +rx $FLYWHEEL/run.py' && \
     bash -c 'chmod +rx $FLYWHEEL/app/'
-ENTRYPOINT ["python","/flywheel/v0/main.sh"] 
+ENTRYPOINT ["python","/flywheel/v0/main.sh", "recon-all-clinical.sh"] 
 # Flywheel reads the config command over this entrypoint
