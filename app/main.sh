@@ -94,7 +94,7 @@ fi
 
 cp $WORKDIR/$base_filename/stats/synthseg.vol.csv $OUTPUT_DIR/synthseg.vol.csv
 cp $WORKDIR/$base_filename/stats/synthseg.qc.csv $OUTPUT_DIR/synthseg.qc.csv
-mri_convert $WORKDIR/$base_filename/mri/synthseg.mgz $OUTPUT_DIR/synthseg.nii
+#mri_convert $WORKDIR/$base_filename/mri/synthseg.mgz $OUTPUT_DIR/synthseg.nii
 
 # Handle Exit status
 

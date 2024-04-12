@@ -1,7 +1,6 @@
 # Use the latest Python 3 docker image
 FROM freesurfer/freesurfer:7.4.1 as base
 
- 
 # Setup environment for Docker image
 ENV HOME=/root/
 ENV FLYWHEEL="/flywheel/v0"
