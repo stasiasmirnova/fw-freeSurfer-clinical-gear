@@ -10,10 +10,9 @@
 FLYWHEEL_BASE=/flywheel/v0
 INPUT_DIR=$FLYWHEEL_BASE/input/
 OUTPUT_DIR=$FLYWHEEL_BASE/output
+WORKDIR=$FLYWHEEL_BASE/work
 CONFIG_FILE=$FLYWHEEL_BASE/config.json
 CONTAINER='[flywheel/recon-all-clinical]'
-threads = 4
-
 source /usr/local/freesurfer/SetUpFreeSurfer.sh
 ##############################################################################
 # Parse configuration
@@ -75,7 +74,7 @@ fi
 recon_all_clinical_exit_status=0
 
 # Set base output_file name
-output_file=$OUTPUT_DIR/"$base_filename"'_recon_all_clinical'
+output_file=$WORKDIR/"$base_filename"'_recon_all_clinical'
 echo "output_file is $output_file"
 
 
@@ -86,13 +85,17 @@ fi
 # Run recon-all-clinical with options
 if [[ -e $input_file ]]; then
   echo "Running recon-all-clinical..."
-  ls -l
-  chmod +x recon_all_clinical.sh 
-  recon_all_clinical.sh $input_file $base_filename $threads $output_file
+  
+  /usr/local/freesurfer/bin/recon-all-clinical.sh $input_file $base_filename 4 $WORKDIR #$output_file 
   recon_all_clinical_exit_status=$?
 fi
 
-##############################################################################
+############################################################################## check output is a nice format 
+
+cp $WORKDIR/$base_filename/stats/synthseg.vol.csv $OUTPUT_DIR/synthseg.vol.csv
+cp $WORKDIR/$base_filename/stats/synthseg.qc.csv $OUTPUT_DIR/synthseg.qc.csv
+mri_convert $WORKDIR/$base_filename/mri/synthseg.mgz $OUTPUT_DIR/synthseg.nii
+
 # Handle Exit status
 
 if [[ $recon_all_clinical_exit_status == 0 ]]; then

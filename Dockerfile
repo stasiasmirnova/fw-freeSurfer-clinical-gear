@@ -1,5 +1,6 @@
 # Use the latest Python 3 docker image
 FROM freesurfer/freesurfer:7.4.1 as base
+
  
 # Setup environment for Docker image
 ENV HOME=/root/
@@ -34,5 +35,5 @@ ENV FREESURFER /usr/local/freesurfer
 # Configure entrypoint
 RUN bash -c 'chmod +rx $FLYWHEEL/run.py' && \
     bash -c 'chmod +rx $FLYWHEEL/app/'
-ENTRYPOINT ["python","/flywheel/v0/main.sh", "recon-all-clinical.sh"] 
+ENTRYPOINT ["python","/flywheel/v0/main.sh"] 
 # Flywheel reads the config command over this entrypoint

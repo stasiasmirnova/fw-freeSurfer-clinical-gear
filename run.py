@@ -5,9 +5,9 @@ import os
 
 # import flywheel functions
 from flywheel_gear_toolkit import GearToolkitContext
-from app.parser import parse_config
 from app.command_line import exec_command
 from utils.gatherDemographics import get_demo
+from app.parser import parseOutput
 
 # The gear is split up into 2 main components. The run.py file which is executed
 # when the container runs. The run.py file then imports the rest of the gear as a
@@ -38,3 +38,7 @@ if __name__ == "__main__":  # pragma: no cover
 
         # Pass the gear context into main function defined above.
         main(gear_context)
+
+
+        print("cleaning output files...")
+        parseOutput()

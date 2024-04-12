@@ -26,7 +26,7 @@
     },
     "gear-builder": {
       "category": "analysis",
-      "image": "flywheel/recon-all-clinical:0.1.9"
+      "image": "flywheel/recon-all-clinical:0.2.1"
     },
     "kcl-app-binary": "app/main.sh",
     "kcl-app-modalities": [
@@ -95,5 +95,5 @@
   "name": "recon-all-clinical",
   "source": "https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all-clinical",
   "url": "https://surfer.nmr.mgh.harvard.edu/",
-  "version": "0.1.9"
+  "version": "0.2.1"
 }
