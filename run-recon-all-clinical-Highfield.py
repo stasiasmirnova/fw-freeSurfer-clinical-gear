@@ -26,15 +26,14 @@ fw = flywheel.Client(api_key=api_key)
 
 # Define the project we're working in
 group_name = "global_map"
-project_names = ["UCT-Khula-Highfield","UCT-Khula-Hyperfine"]
-
+project_names = ["UCT-Khula-Highfield"]
+#TODO: "UCT-Khula-Highfield" <- point to T2 - use synthse setter not in name
  # Initialize gear_job_list
 job_list = list()
 inputs = {}
 
 # Define the gear we're running
-recon-all-clinical-gear =  fw.lookup('gears/recon-all-clinical')
-print(recon-all-clinical-gear)
+recon_all_clinical_gear =  fw.lookup('gears/recon-all-clinical')
 for project_name in project_names:
     project = fw.lookup(f"{group_name}/{project_name}")
 
@@ -46,10 +45,11 @@ for project_name in project_names:
             session = session.reload()
             print("parsing... ", subject.label, session.label)
             
+                
             for acq in session.acquisitions.iter():
                 # Now we have to look at every file in every acquisition, in every session.
                 for file_obj in acq.files:
-                    if "ABCD_T2w_SPC_vNav_run01" in file_obj.name:
+                    if 'ABCD_T2W_spc_vnav' in acq.label or 'ABCD_T2w_spc_vNav' in acq.label:
                         # Exclude this setter nonsense
                         if 'setter' in file_obj.name or 'vNav_e' in file_obj.name:
                             continue
@@ -62,24 +62,16 @@ for project_name in project_names:
                             if file_obj.classification.get('Measurement') == ['T2']:
                                 input_label = 'input'
                                 inputs[input_label] = file_obj
+                                print("Found T2w: ", file_obj.name)
+
 
             try:
-                # The destination for this anlysis will be on the session
+            # The destination for this anlysis will be on the session
                 dest = session
                 time_fmt = '%d-%m-%Y_%H-%M-%S'
-                analysis_label = f'SynthSeg_{datetime.now().strftime(time_fmt)}'
-                job_id = synthseg_gear.run(analysis_label=analysis_label, inputs=inputs, destination=dest, config={
-                "debug": False,
-                "Input Glob Pattern": "",
-                "Input Regex": ".*nii\\.gz",
-                "Input Tags": "",
-                "parc": True,
-                "QC": True,
-                "robust": True,
-                "vol": True,
-                "verbose": "v"
-            })
+                analysis_label = f'Recon_all_clinical_{datetime.now().strftime(time_fmt)}' #TODO: fix typo
+                job_id = recon_all_clinical_gear.run(analysis_label=analysis_label, inputs=inputs, destination=dest, config={})
                 job_list.append(job_id)
                 print("Submitting Job: Check Jobs Log", dest.label)
             except:
-                print("BOOP: Job cannot be sent.. No files for session??", dest.label)
+               print("BOOP: Job cannot be sent.. No files for session??", dest.label)
