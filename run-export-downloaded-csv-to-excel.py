@@ -11,24 +11,34 @@ def process_csv_files(root_dir):
 
                 # Read the CSV file
                 df = pd.read_csv(full_path)
-                
                 # Extract metadata from the directory path
                 parts = os.path.normpath(full_path).split(os.sep)
+                
+
 
                 # The index '191_28097536_12M' is found 2 levels up from the file name
                 patient_info = parts[-3]  # '-3' because we count from the file going up the path
                 session_name = parts[-2]
 
                 # Add the patient_info as a new column in the DataFrame
-                df['patient_info'] = patient_info
+                df['patient_info2'] = patient_info
                 df['session_name'] = session_name
  
-                if patient_info.count('_') == 2:  # Ensure the directory name has exactly two underscores
-                    patient_info = patient_info.replace('M', '')
+                if patient_info.count('_') == 3:  # Ensure the directory name has exactly two underscores
+                    patient_info = patient_info.replace('MO', '').replace('M0', '')
+                    print(patient_info)
+                    _, number, person, age = patient_info.split('_')
+                    df['person'] = person
+                    df['age'] = age
+
+                elif patient_info.count('_') == 2:  # Ensure the directory name has exactly two underscores
+                    patient_info = patient_info.replace('MO', '').replace('M0', '')
                     print(patient_info)
                     number, person, age = patient_info.split('_')
                     df['person'] = person
-                    df['age'] = age
+                    df['age'] = age    
+                else:
+                    print(parts)
                     
                 # Append to the list
                 all_data.append(df)
@@ -43,5 +53,5 @@ def process_csv_files(root_dir):
     master_df.to_excel(root_directory+'/output.xlsx')
 
 # Directory containing the folders and CSV files
-root_directory = '/Users/flywheel/fw/analysis/UCT-Khula-Hyperfine/recon-all-clinical'  # Replace with your root directory
+root_directory = '/Users/flywheel/fw/analysis/UCT-Khula-Highfield/recon-all-clinical'  # Replace with your root directory
 process_csv_files(root_directory)

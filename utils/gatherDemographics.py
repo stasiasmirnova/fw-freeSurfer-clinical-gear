@@ -19,7 +19,7 @@ def get_demo():
     # Read API key in config file
     api_key = (config['inputs']['api-key']['key'])
     fw = flywheel.Client(api_key=api_key)
-    gear = 'synthseg'
+    gear = 'recon-all-clinical'
     
     # Get the input file id
     input_file_id = (config['inputs']['input']['hierarchy']['id'])
@@ -79,7 +79,7 @@ def get_demo():
                     else:
                         print("No age at scan in session info label! Ask PI...")
                         age = 0
-
+ 
                     if age == 0:
                         print("No age at scan - skipping")
                         exit(1)
@@ -95,7 +95,3 @@ def get_demo():
   
     print("Demographics: ", subject_label, session_label, age, PatientSex)
     return subject_label, session_label, age, PatientSex
-
-
-
-

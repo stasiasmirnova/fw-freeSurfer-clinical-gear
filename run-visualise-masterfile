@@ -1,0 +1,25 @@
+import os
+import pandas as pd
+
+
+# Read the CSV file
+df = pd.read_csv('/Users/flywheel/Documents/fw-recon-all-clinical-data-analysis/combined_processed_output.csv')
+
+
+# Extract:
+#age label from patient info
+#person from patient info
+
+# #patient_info = df['patient_info'] 
+# # Extracting data into new columns
+# df[['person', 'age_label']] = df['patient_info'].str.extract(r'.*_(\d+)_(\d+)[M][0O]?')
+
+
+#TODO:     #copy age for same patient id + label
+
+
+# Set 'patient_info' as an index column
+df.set_index(['person',	'age',	'age_label',	'session_name',	'patient_info',	'software',	'magnetic_field',	'sex'], inplace=True)
+
+# Export to Excel
+df.to_excel('/Users/flywheel/Documents/fw-recon-all-clinical-data-analysis/combined_processed_output.xlsx')
