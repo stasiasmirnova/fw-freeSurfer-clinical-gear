@@ -20,13 +20,11 @@ Takes three orthogonally acquired images (axial, coronal, sagittal) collected on
 
 **url:** <https://gitlab.com/flywheel-io/flywheel-apps/>
 
-**cite:**  
-SynthSeg: Domain Randomisation for Segmentation of Brain MRI Scans of any Contrast and Resolution
-B. Billot, D.N. Greve, O. Puonti, A. Thielscher, K. Van Leemput, B. Fischl, A.V. Dalca, J.E. Iglesias
 
-Robust Segmentation of Brain MRI in the Wild with Hierarchical CNNs and no Retraining
-B. Billot, M. Colin, S.E. Arnold, S. Das, J.E. Iglesias
-MICCAI 2022  
+Cortical analysis of heterogeneous clinical brain MRI scans for large-scale neuroimaging studies. K Gopinath, DN Greeve, S Das, S Arnold, C Magdamo, JE Iglesias
+SynthSeg: Segmentation of brain MRI scans of any contrast and resolution without retraining. B Billot, DN Greve, O Puonti, A Thielscher, K Van Leemput, B Fischl, AV Dalca, JE Iglesias. Medical Image Analysis, 83, 102789 (2023).
+Robust machine learning segmentation for large-scale analysis of heterogeneous clinical brain MRI datasets. B Billot, C Magdamo, SE Arnold, S Das, JE Iglesias. PNAS, 120(9), e2216399120 (2023).
+SynthSR: a public AI tool to turn heterogeneous clinical brain scans into high-resolution T1-weighted images for 3D morphometry. JE Iglesias, B Billot, Y Balbastre, C Magdamo, S Arnold, S Das, B Edlow, D Alexander, P Golland, B Fischl. Science Advances, 9(5), eadd3607 (2023).
 
 ### Classification
 
