@@ -1,9 +1,8 @@
 # Synthseg
 
-This gear runs the synthseg tool ( https://github.com/BBillot/SynthSeg ) available in Freesurfer >7.2.0. This is the out-of-the-box version that runs convolutiona neural networks for segmentation. This gear has been developed with the processing of Hyperfine data in mind. 
+This gear runs the recon-all-clinical tool ( https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all-clinical ) available in Freesurfer > 7.4.0. This is the out-of-the-box version that runs cortical surface reconstruction and analysis of brain MRI scans of any modality, contrast and resolution without retraining and fine-tuning. This gear has been developed with the processing of Hyperfine data in mind. 
 
 Hyperfine - Construction of isotropic image from tri-plane othogonal aquisitions
-
 
 ## Overview
 
